@@ -3,9 +3,14 @@ const VerboG1 = mongoose.model("VerboG1");
 
 exports.getVerboG1 = async (req, res) => {
     try {
-        const verboG1 = await VerboG1.find();
-        res.json(verboG1);
+    //funcao para limitar a quantidade de itens por pagina
+      const page = parseInt(req.query.page) || 1;
+      const limit = 25;
+      const skip = (page - 1) * limit;
+
+      const verboG1 = await VerboG1.find().skip(skip).limit(limit);
+      res.json(verboG1);
     } catch (error) {
-        res.status(500).send(error);
+      res.status(500).send(error);
     }
 }

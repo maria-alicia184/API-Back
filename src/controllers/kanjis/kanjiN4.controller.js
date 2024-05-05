@@ -3,9 +3,14 @@ const KanjiN4 = mongoose.model("KanjiN4");
 
 exports.getKanjiN4 = async (req, res) => {
     try {
-        const kanjiN4 = await KanjiN4.find();
-        res.json(kanjiN4);
+    //funcao para limitar a quantidade de itens por pagina
+      const page = parseInt(req.query.page) || 1;
+      const limit = 25;
+      const skip = (page - 1) * limit;
+
+      const kanjiN4 = await KanjiN4.find().skip(skip).limit(limit);
+      res.json(kanjiN4);
     } catch (error) {
-        res.status(500).send(error);
+      res.status(500).send(error);
     }
 }
