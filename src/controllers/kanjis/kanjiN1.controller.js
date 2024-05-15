@@ -14,3 +14,16 @@ exports.getKanjiN1 = async (req, res) => {
       res.status(500).send(error);
     }
 }
+
+exports.getDetailKN1 = async (req, res) => {
+    try {
+        const userInput = req.params.userInput;
+        const query = {
+                "Vocabulary": userInput
+        };
+        const kanji = await KanjiN1.find(query);
+        res.json(kanji);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}

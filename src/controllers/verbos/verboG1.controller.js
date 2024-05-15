@@ -14,3 +14,16 @@ exports.getVerboG1 = async (req, res) => {
       res.status(500).send(error);
     }
 }
+
+exports.getDetailVG1 = async (req, res) => {
+    try {
+        const userInput = req.params.userInput;
+        const query = {
+                "Vocabulary": userInput
+        };
+        const verbo = await VerboG1.find(query);
+        res.json(verbo);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}

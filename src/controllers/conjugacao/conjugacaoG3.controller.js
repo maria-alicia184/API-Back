@@ -14,3 +14,16 @@ exports.getConjugacaoG3 = async (req, res) => {
       res.status(500).send(error);
     }
 }
+
+exports.getDetailCG3 = async (req, res) => {
+    try {
+        const userInput = req.params.userInput;
+        const query = {
+                "Verb": userInput
+        };
+        const conjugacao = await ConjugacaoG3.find(query);
+        res.json(conjugacao);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}

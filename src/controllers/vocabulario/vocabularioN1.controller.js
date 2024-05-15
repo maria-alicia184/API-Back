@@ -14,3 +14,16 @@ exports.getVocabularioN1 = async (req, res) => {
       res.status(500).send(error);
     }
 }
+
+exports.getDetailVN1 = async (req, res) => {
+    try {
+        const userInput = req.params.userInput;
+        const query = {
+                "Vocabulary": userInput
+        };
+        const vocabulario = await VocabularioN1.find(query);
+        res.json(vocabulario);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}

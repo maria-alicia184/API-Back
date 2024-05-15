@@ -15,3 +15,17 @@ exports.getVocabularioN5 = async (req, res) => {
     }
 }
 
+//funcao para capturar o input do usuario e retornar o resultado da busca
+exports.getDetailVN5 = async (req, res) => {
+    try {
+        const userInput = req.params.userInput;
+        const query = {
+                "Vocabulary": userInput
+        };
+        const vocabulario = await VocabularioN5.find(query);
+        res.json(vocabulario);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
