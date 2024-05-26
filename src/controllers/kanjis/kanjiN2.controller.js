@@ -19,7 +19,7 @@ exports.getDetailKN2 = async (req, res) => {
     try {
         const userInput = req.params.userInput;
         const query = {
-                "Vocabulary": userInput
+                "Kanji": userInput
         };
         const kanji = await KanjiN2.find(query);
         res.json(kanji);
